@@ -1,6 +1,6 @@
 // 由 scripts/gen-plugins-real.mjs 生成——请勿手改。
 // 首页三条 rail 的候选池，口径见生成脚本末尾的注释。
-// 生成时间：2026-10-15T01:16:54.241Z
+// 生成时间：2026-10-15T02:13:52.218Z
 import type { HomePick } from "./types";
 
 /** 编辑推荐候选池（有编辑短评的项目，置顶推荐排前）。首页 6 张一批，「换一批」在池内轮换。 */
@@ -18,6 +18,7 @@ export const editorPool: HomePick[] = [
   { fullName: "NanmiCoder/dsh-agent-teams", name: "dsh-agent-teams", owner: "NanmiCoder", stars: 2123, score: 91, isFeatured: true, isOfficial: false, isInsider: true },
   { fullName: "bowenliang123/dsh-context", name: "dsh-context", owner: "bowenliang123", stars: 2088, score: 91, isFeatured: true, isOfficial: false, isInsider: false },
   { fullName: "xmanrui/dsh-im", name: "dsh-im", owner: "xmanrui", stars: 1965, score: 87, isFeatured: true, isOfficial: false, isInsider: false },
+  { fullName: "Fei2411/DeepSeek-Bot", name: "DeepSeek-Bot", owner: "Fei2411", stars: 1775, score: null, isFeatured: true, isOfficial: false, isInsider: false },
   { fullName: "0xsline/awesome-deepseek-harness", name: "awesome-deepseek-harness", owner: "0xsline", stars: 1181, score: 67, isFeatured: true, isOfficial: false, isInsider: true },
   { fullName: "Anionex/dsh-vision-toolkit", name: "dsh-vision-toolkit", owner: "Anionex", stars: 892, score: 90, isFeatured: true, isOfficial: false, isInsider: true },
   { fullName: "LivXue/dsh-plugin-shop", name: "dsh-plugin-shop", owner: "LivXue", stars: 703, score: 81, isFeatured: true, isOfficial: false, isInsider: false },
@@ -63,8 +64,8 @@ export const trendingPicks: HomePick[] = [
   { fullName: "YuJunZhiXue/dsh-purge", name: "dsh-purge", owner: "YuJunZhiXue", stars: 5427, score: 48, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 1862 },
   { fullName: "dataelement/dsh-desktop", name: "dsh-desktop", owner: "dataelement", stars: 13911, score: null, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 1768 },
   { fullName: "T-Auto/dsh-ops", name: "dsh-ops", owner: "T-Auto", stars: 919, score: null, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 907 },
-  { fullName: "Fei2411/DeepSeek-Bot", name: "DeepSeek-Bot", owner: "Fei2411", stars: 1775, score: null, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 606 },
   { fullName: "ranxianglei/billion-context", name: "billion-context", owner: "ranxianglei", stars: 1201, score: null, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 600 },
+  { fullName: "MeteorNOX/DeepSeek-Balance-Whale-Widget", name: "DeepSeek-Balance-Whale-Widget", owner: "MeteorNOX", stars: 4743, score: 70, isFeatured: false, isOfficial: false, isInsider: false, starGrowth: 580 },
 ];
 
 /** 新面孔：最近收录且已确认是 DSH 插件的项目。 */

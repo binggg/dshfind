@@ -1,6 +1,6 @@
 // 由 scripts/gen-plugins-real.mjs 从 D1 plugin_i18n 表生成——请勿手改。
 // 文案唯一事实源在 D1，用 scripts/set-plugin-i18n.mjs 维护；改完跑 pnpm gen:plugins 刷新本文件。
-// 生成时间：2026-10-15T01:16:54.227Z
+// 生成时间：2026-10-15T02:13:52.193Z
 import type { Locale } from "@/i18n/config";
 
 /** 详情页富文案：intro 长介绍 / highlights 亮点 / installCmd 安装命令覆盖。 */
@@ -1846,6 +1846,14 @@ const editorial: Record<string, PluginEditorial> = {
         "因此不受文件格式与大小影响，PDF 与普通文件走同一条流程",
         "搜索按精确名、前缀、紧凑匹配排序；查询带 / 时按路径段匹配，方向键可进入目录；默认索引跳过版本控制、IDE 元数据、依赖树、缓存与构建产物"
       ]
+    }
+  },
+  "Fei2411/DeepSeek-Bot": {
+    "intro": {
+      "en": "Turns DSH into a team of long-lived bots: each bot stays online with its own memory and a model you pick for it, and bots can DM each other and form group chats — multi-agent collaboration without writing any orchestration yourself.",
+      "ja": "DSH を常駐ボットのチームに変えるプラグイン。各ボットは記憶を持ち、モデルを個別に指定でき、ボット同士で DM やグループチャットも可能——オーケストレーションを書かずにマルチエージェント連携を始められます。",
+      "ko": "DSH를 상주 봇 팀으로 바꿔주는 플러그인. 각 봇은 메모리를 갖고 모델을 개별 지정할 수 있으며, 봇끼리 DM과 그룹 채팅도 가능합니다——오케스트레이션 코드 없이 멀티 에이전트 협업을 시작할 수 있습니다.",
+      "zh": "「把 DSH 变成一支常驻 bot 团队」：每个 bot 长期在线、自带记忆、可单独指定模型；bot 之间能私信、能拉群聊——多智能体协作不用自己写编排，跟 bot 说句话就把团队建起来了。"
     }
   },
   "GanyuanRan/Aegis": {
