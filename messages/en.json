@@ -37,9 +37,7 @@
     "subtitle": "Sponsors",
     "footer": "Thanks to our sponsors for their service and operational support.",
     "items": [
-      { "name": "Rong · 融模型", "tagline": "Fusion model gateway" },
-      { "name": "OpenModel", "tagline": "Multi-model LLM gateway & console" },
-      { "name": "Harness Remote", "tagline": "Multi-device remote access for Harness" }
+      { "name": "OpenModel", "tagline": "Multi-model LLM gateway & console" }
     ]
   },
   "Footer": {

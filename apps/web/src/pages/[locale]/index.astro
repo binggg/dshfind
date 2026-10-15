@@ -16,8 +16,6 @@ import { realPlugins } from "@/lib/plugins-real";
 import { localeUrl, SITE_URL } from "@/lib/site";
 import type { HomePick } from "@/lib/types";
 import openmodel from "@/../public/sponsors/openmodel.png";
-import harnessRemote from "@/../public/sponsors/deepseek-harness-remote.png";
-import rong from "@/../public/sponsors/rong.png";
 import SearchBox from "~/components/header/SearchBox";
 import PickCard from "~/components/home/PickCard.astro";
 import SectionHeading from "~/components/home/SectionHeading.astro";
@@ -37,10 +35,8 @@ const [a0 = 0, a1 = 0] = first.accent ?? [];
 
 // 赞助商：名称/简介走 i18n（Sponsors.items，按顺序对应这里的链接与 logo）；logo 走资源导入进 /_astro/
 const SPONSOR_META = [
-  { href: "https://rong-ai.com/", logo: rong },
   // OpenModel 的 logo 是透明底黑色图形，垫一层白底保证暗色主题下可读
   { href: "https://www.openmodel.ai/zh", logo: openmodel, tile: "bg-white" },
-  { href: "https://dshfind.com/zh/plugins/liguobao/deepseek-harness-remote", logo: harnessRemote },
 ];
 const sponsors = t.raw<{ name: string; tagline: string }[]>("Sponsors.items").flatMap((item, i) =>
   SPONSOR_META[i] ? [{ ...item, ...SPONSOR_META[i] }] : [],
