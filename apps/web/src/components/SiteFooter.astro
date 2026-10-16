@@ -1,6 +1,7 @@
 ---
 /** 页脚，结构与链接对齐老站 SiteFooter：品牌 + 产品 / 资源 / 社区 / 友情链接四组 + 版权条。 */
 import { translator, type Locale } from "~/i18n";
+import { footerLabels } from "~/legal";
 
 interface Props {
   locale: Locale;
@@ -77,6 +78,15 @@ const groups = [
   <div class="border-t border-border/60">
     <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-muted-foreground sm:flex-row sm:px-6">
       <p>© 2026 dshfind.com · dsh-external</p>
+      <nav class="flex gap-4">
+        {
+          (["about", "contact", "privacy"] as const).map((slug) => (
+            <a href={`/${locale}/${slug}`} class="transition-colors hover:text-foreground">
+              {footerLabels[locale][slug]}
+            </a>
+          ))
+        }
+      </nav>
       <p>{t("Footer.madeWith")}</p>
     </div>
   </div>

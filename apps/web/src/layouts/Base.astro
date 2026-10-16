@@ -40,6 +40,12 @@ const props = Astro.props;
     <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" type="image/png" />
     <!-- 搜索框直连 API 时提前握手，摊平首次搜索的 TLS 延迟（老站同款） -->
     <link rel="preconnect" href={API_BASE} />
+    <!-- Google AdSense：站点验证 + 自动广告入口。ca-pub 与 public/ads.txt 里的发布商 ID 必须一致 -->
+    <script
+      is:inline
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4723780114162477"
+      crossorigin="anonymous"></script>
   </head>
   <body class="flex min-h-full flex-col">
     <SponsorBanner locale={props.locale} />

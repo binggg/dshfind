@@ -62,7 +62,7 @@ const jsonLd = {
   path={toPath(section, doc.slug)}
   title={t("Meta.docPageTitle", { title: doc.title })}
   description={doc.summary ?? undefined}
-  noindex={!isIndexable(cfg, locale)}
+  noindex={!isIndexable(cfg, locale, doc.isTranslated)}
   jsonLd={[jsonLd, breadcrumbJsonLd(locale, crumbs)]}
 >
   <div class="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6">

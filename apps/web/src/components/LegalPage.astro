@@ -1,0 +1,42 @@
+---
+/** 关于 / 联系 / 隐私政策三页共用的版式，正文在 ~/legal.ts。 */
+import { legalDocs, LEGAL_UPDATED, updatedLabel, type LegalSlug } from "~/legal";
+import Base from "~/layouts/Base.astro";
+import type { Locale } from "~/i18n";
+
+interface Props {
+  locale: Locale;
+  slug: LegalSlug;
+}
+
+const { locale, slug } = Astro.props;
+const doc = legalDocs[locale][slug];
+---
+
+<Base locale={locale} path={`/${slug}`} title={`${doc.title} · dshfind`} description={doc.description}>
+  <article class="legal mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="text-2xl font-bold sm:text-3xl">{doc.title}</h1>
+    <p class="mt-2 text-sm text-muted-foreground">{updatedLabel[locale]}: {LEGAL_UPDATED}</p>
+    {
+      doc.sections.map((section) => (
+        <section class="mt-8">
+          <h2 class="text-lg font-semibold">{section.heading}</h2>
+          {section.paragraphs.map((p) => (
+            <p class="mt-3 leading-relaxed text-muted-foreground" set:html={p} />
+          ))}
+        </section>
+      ))
+    }
+  </article>
+</Base>
+
+<style>
+  .legal :global(a) {
+    color: var(--color-brand-500);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal :global(strong) {
+    color: var(--foreground);
+  }
+</style>

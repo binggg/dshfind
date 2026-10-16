@@ -54,7 +54,7 @@
     "madeWith": "Made with DeepSeek Blue 💙",
     "friendLinks": "링크",
     "browse": "플러그인 색인",
-    "docs": "공식 문서"
+    "docs": "문서"
   },
   "Hero": {
     "phrases": [
@@ -603,13 +603,13 @@
     "hubAllDescription": "dshfind에 수록된 DeepSeek Harness 플러그인 전체 {total}개 색인. {page} / {pageCount} 페이지.",
     "hubIndexTitle": "DSH 플러그인 색인 — 카테고리·언어·태그로 찾기",
     "hubIndexDescription": "dshfind에 수록된 DeepSeek Harness 플러그인을 카테고리, 개발 언어, 태그로 찾아보세요. 전체 색인도 제공합니다.",
-    "docsTitle": "DeepSeek Harness 공식 문서 — 한영중일 4개 국어판",
-    "docsDescription": "DeepSeek Harness (DSH) 공식 문서의 다국어판. 플러그인 개발, 프레임워크 기능, 사용 가이드, 서브시스템 해설을 상위 저장소의 고정 커밋을 출처로 제공합니다.",
-    "docPageTitle": "{title} — DSH 공식 문서"
+    "docsTitle": "DeepSeek Harness 문서 커뮤니티 번역 — 한영중일 4개 국어판",
+    "docsDescription": "DeepSeek Harness (DSH) 공식 문서의 비공식 커뮤니티 번역판. 플러그인 개발, 프레임워크 기능, 사용 가이드, 서브시스템 해설을 상위 저장소의 고정 커밋을 출처로 제공합니다.",
+    "docPageTitle": "{title} — DSH 문서"
   },
   "Docs": {
-    "title": "공식 문서",
-    "indexHeading": "DeepSeek Harness 공식 문서",
+    "title": "문서(커뮤니티 번역)",
+    "indexHeading": "DeepSeek Harness 문서(커뮤니티 번역판)",
     "indexIntro": "DeepSeek Harness 공식 문서의 커뮤니티 정리판·다국어판. 원문은 상위 저장소의 고정 커밋에서 가져왔으며 페이지마다 출처를 명시합니다.",
     "unofficialNotice": "비공식 번역",
     "translatedNote": "이 페이지는 dshfind 커뮤니티가 공식 문서를 번역한 것입니다. 최신이 아니거나 차이가 있을 수 있으니 반드시 공식 원문을 우선하세요.",

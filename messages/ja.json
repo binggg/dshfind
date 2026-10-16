@@ -54,7 +54,7 @@
     "madeWith": "Made with DeepSeek Blue 💙",
     "friendLinks": "リンク",
     "browse": "プラグイン索引",
-    "docs": "公式ドキュメント"
+    "docs": "ドキュメント"
   },
   "Hero": {
     "phrases": [
@@ -603,13 +603,13 @@
     "hubAllDescription": "dshfind が収録する DeepSeek Harness プラグイン全 {total} 件のインデックス。{page} / {pageCount} ページ。",
     "hubIndexTitle": "DSH プラグイン索引 — カテゴリ・言語・タグから探す",
     "hubIndexDescription": "dshfind が収録する DeepSeek Harness プラグインをカテゴリ・開発言語・タグから探す。全件インデックスも利用可能。",
-    "docsTitle": "DeepSeek Harness 公式ドキュメント — 日英中韓 4 言語版",
-    "docsDescription": "DeepSeek Harness (DSH) 公式ドキュメントの多言語版。プラグイン開発、フレームワーク機能、利用ガイド、サブシステム解説を、上流の固定コミットを出典として提供します。",
-    "docPageTitle": "{title} — DSH 公式ドキュメント"
+    "docsTitle": "DeepSeek Harness ドキュメント コミュニティ翻訳 — 日英中韓 4 言語版",
+    "docsDescription": "DeepSeek Harness (DSH) 公式ドキュメントの非公式コミュニティ翻訳版。プラグイン開発、フレームワーク機能、利用ガイド、サブシステム解説を、上流の固定コミットを出典として提供します。",
+    "docPageTitle": "{title} — DSH ドキュメント"
   },
   "Docs": {
-    "title": "公式ドキュメント",
-    "indexHeading": "DeepSeek Harness 公式ドキュメント",
+    "title": "ドキュメント（コミュニティ翻訳）",
+    "indexHeading": "DeepSeek Harness ドキュメント（コミュニティ翻訳版）",
     "indexIntro": "DeepSeek Harness 公式ドキュメントのコミュニティ整理版・多言語版。原文は上流リポジトリの固定コミットから取得し、ページごとに出典を明記しています。",
     "unofficialNotice": "非公式翻訳",
     "translatedNote": "本ページは dshfind コミュニティが公式ドキュメントから翻訳したものです。内容が古い、または差異がある場合があります。必ず公式原文を優先してください。",

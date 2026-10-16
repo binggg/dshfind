@@ -54,7 +54,7 @@
     "madeWith": "Made with DeepSeek Blue 💙",
     "friendLinks": "友情链接",
     "browse": "插件分类索引",
-    "docs": "官方文档"
+    "docs": "文档"
   },
   "Hero": {
     "phrases": [
@@ -603,14 +603,14 @@
     "hubAllDescription": "dshfind 收录的全部 {total} 款 DeepSeek Harness 插件索引，第 {page} 页，共 {pageCount} 页。",
     "hubIndexTitle": "DSH 插件分类索引 — 按分类、语言与标签浏览",
     "hubIndexDescription": "按分类、开发语言与标签浏览 dshfind 收录的全部 DeepSeek Harness 插件，或直接翻阅全量索引。",
-    "docsTitle": "DeepSeek Harness 官方文档 — 中日韩英四语言版",
-    "docsDescription": "DeepSeek Harness (DSH) 官方文档的多语言整理版：插件开发、框架能力、使用指南与子系统详解，源文取自上游固定提交并标注出处。",
-    "docPageTitle": "{title} — DSH 官方文档"
+    "docsTitle": "DeepSeek Harness 文档社区翻译 — 中日韩英四语言版",
+    "docsDescription": "DeepSeek Harness (DSH) 官方文档的非官方社区翻译版：插件开发、框架能力、使用指南与子系统详解，源文取自上游固定提交并标注出处。",
+    "docPageTitle": "{title} — DSH 文档"
   },
   "Docs": {
-    "title": "官方文档",
-    "indexHeading": "DeepSeek Harness 官方文档",
-    "indexIntro": "DeepSeek Harness 官方文档的社区整理与多语言版本，源文取自上游仓库的固定提交，逐篇标注出处。",
+    "title": "文档（社区翻译）",
+    "indexHeading": "DeepSeek Harness 文档（社区翻译版）",
+    "indexIntro": "DeepSeek Harness 官方文档的非官方社区整理与多语言版本（dshfind 与 DeepSeek 官方无隶属关系），源文取自上游仓库的固定提交，逐篇标注出处。",
     "unofficialNotice": "非官方翻译",
     "translatedNote": "本页由 dshfind 社区翻译自官方文档，可能滞后或有偏差，请以官方原文为准。",
     "mirroredNote": "本页转载自官方文档原文，请以官方版本为准。",

@@ -55,7 +55,7 @@
     "madeWith": "Made with DeepSeek Blue",
     "friendLinks": "Links",
     "browse": "Plugin Index",
-    "docs": "Official Docs"
+    "docs": "Docs"
   },
   "Hero": {
     "phrases": [
@@ -605,13 +605,13 @@
     "hubAllDescription": "Complete index of all {total} DeepSeek Harness plugins on dshfind — page {page} of {pageCount}.",
     "hubIndexTitle": "DSH Plugin Index — Browse by Category, Language and Tag",
     "hubIndexDescription": "Browse every DeepSeek Harness plugin indexed by dshfind by category, programming language or tag, or page through the complete index.",
-    "docsTitle": "DeepSeek Harness Official Docs — Four-Language Edition",
-    "docsDescription": "A multilingual edition of the DeepSeek Harness (DSH) documentation: plugin development, framework capabilities, user guides and subsystem deep dives, sourced from a pinned upstream commit.",
-    "docPageTitle": "{title} — DSH Official Docs"
+    "docsTitle": "DeepSeek Harness Docs, Community Translation — Four-Language Edition",
+    "docsDescription": "An unofficial, community-made multilingual edition of the DeepSeek Harness (DSH) documentation: plugin development, framework capabilities, user guides and subsystem deep dives, sourced from a pinned upstream commit.",
+    "docPageTitle": "{title} — DSH Docs"
   },
   "Docs": {
-    "title": "Official Docs",
-    "indexHeading": "DeepSeek Harness Official Documentation",
+    "title": "Docs (Community Translation)",
+    "indexHeading": "DeepSeek Harness Documentation (Community Translation)",
     "indexIntro": "A community-organised, multilingual edition of the DeepSeek Harness documentation, sourced from a pinned upstream commit with per-page attribution.",
     "unofficialNotice": "Unofficial translation",
     "translatedNote": "This page was translated from the official documentation by the dshfind community. It may lag behind or differ — always defer to the official original.",

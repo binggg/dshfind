@@ -10,6 +10,7 @@
 import { isLocale, type Locale } from "@/i18n/config";
 import { downloadTier, formatDownloads } from "@/lib/downloads";
 import { pluginOgImage } from "@/lib/og";
+import { isIndexablePlugin } from "@/lib/plugin-indexing";
 import { renamedTo } from "@/lib/plugin-renames";
 import { tagSlug } from "@/lib/plugin-hubs-slug";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
@@ -55,6 +56,17 @@ const installKind = curatedCmd ? "curated" : plugin.installKind;
 const description = live?.description ?? plugin.description;
 const downloads = plugin.downloadSummary;
 const downloadsBadge = downloads != null && downloadTier(downloads.total) != null;
+
+// 收录口径与 sitemap 共用（见 plugin-indexing.ts）：薄页照常可访问但 noindex
+const indexable = isIndexablePlugin({
+  fullName: plugin.fullName,
+  isRisky: plugin.isRisky,
+  isFeatured: plugin.isFeatured,
+  isOfficial: plugin.isOfficial,
+  stars: plugin.stars,
+  hasIntro: Object.values(plugin.i18n).some((row) => Boolean(row?.intro)),
+  downloads: downloads?.total ?? 0,
+});
 
 const ai = plugin.scoreDetail?.ai;
 const parts = plugin.scoreDetail?.parts;
@@ -130,7 +142,7 @@ const COPY_BTN = "group inline-flex shrink-0 items-center gap-1.5 rounded-md bor
   path={`/plugins/${plugin.fullName}`}
   title={title}
   description={metaDescription}
-  noindex={plugin.isRisky ? "noindex" : false}
+  noindex={plugin.isRisky ? "noindex" : indexable ? false : "noindex, follow"}
   ogImage={plugin.isRisky ? undefined : { url: pluginOgImage(plugin.fullName, plugin.pushedAt), alt: title }}
   jsonLd={[jsonLd, breadcrumbJsonLd(locale, crumbs)]}
 >

@@ -41,8 +41,12 @@ export function sectionById(id: string): DocSection | null {
  *
  * 官方已发布板块的 zh/en 是纯重复内容，收录只会稀释自己的抓取预算，
  * 还可能被判为低质量聚合；ja/ko 全网独有，必须收。
+ *
+ * 未发布板块同理：原样转载上游的那一版（isTranslated = false，en 永远是、zh 在上游自带
+ * .zh.md 时也是）同样是复制内容，只收本站翻译的语言。
  */
-export function isIndexable(section: DocSection, locale: string): boolean {
+export function isIndexable(section: DocSection, locale: string, isTranslated: boolean): boolean {
+  if (!isTranslated) return false;
   if (!section.publishedUpstream) return true;
   return locale === "ja" || locale === "ko";
 }

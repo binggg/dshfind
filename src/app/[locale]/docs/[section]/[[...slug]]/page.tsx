@@ -55,7 +55,7 @@ export async function generateMetadata({
     alternates: pageAlternates(locale, toPath(section, doc.slug)),
     openGraph: { title, description },
     // 官方已发布板块的 zh/en 与官方逐字相同，收录只会稀释自己的抓取预算
-    robots: isIndexable(cfg, locale) ? undefined : { index: false, follow: true },
+    robots: isIndexable(cfg, locale, doc.isTranslated) ? undefined : { index: false, follow: true },
   };
 }
 

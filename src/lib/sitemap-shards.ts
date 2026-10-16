@@ -9,6 +9,8 @@ import {
   listLanguages,
   listTags,
 } from "@/lib/plugin-hubs";
+import { getPluginEditorial } from "@/lib/plugin-i18n";
+import { isIndexablePlugin } from "@/lib/plugin-indexing";
 import { realPlugins } from "@/lib/plugins-real";
 import { languageAlternates, localeUrl } from "@/lib/site";
 import {
@@ -79,8 +81,18 @@ const newestPluginPush = realPlugins.reduce(
 /** 进 sitemap 的帖子上限。超出的靠站内链接被发现，不让分片无限膨胀。 */
 
 
-/** 非风险插件——与详情页 noindex 的口径一致，不给假冒仓库送 SEO。 */
-const indexablePlugins = realPlugins.filter((p) => !p.isRisky);
+// 收录口径见 plugin-indexing.ts：详情页按同一规则输出 noindex，两边不一致会让 sitemap 里全是 noindex 页
+const indexablePlugins = realPlugins.filter((p) =>
+  isIndexablePlugin({
+    fullName: p.fullName,
+    isRisky: p.isRisky,
+    isFeatured: p.isFeatured,
+    isOfficial: p.isOfficial,
+    stars: p.stars,
+    hasIntro: Object.values(getPluginEditorial(p.fullName)?.intro ?? {}).some(Boolean),
+    downloads: p.downloads?.total ?? 0,
+  }),
+);
 
 export function pluginShardCount(): number {
   return Math.max(1, Math.ceil(indexablePlugins.length / PLUGINS_PER_SHARD));
@@ -146,6 +158,16 @@ async function buildPages(): Promise<SitemapEntry[]> {
       lastModified: listLastMod,
     }),
   );
+  // 关于 / 联系 / 隐私政策：AdSense 审核会找这几页，进 sitemap 让它们尽快被抓到
+  for (const p of ["/about", "/contact", "/privacy"]) {
+    out.push(
+      ...forAllLocales(p, {
+        priority: 0.3,
+        changeFrequency: "monthly",
+        lastModified: "2026-10-16T00:00:00.000Z", // 与 apps/web/src/legal.ts 的 LEGAL_UPDATED 同步
+      }),
+    );
+  }
   out.push(
     ...forAllLocales("/learn/cordis", {
       priority: 0.8,
@@ -272,7 +294,9 @@ async function buildDocs(): Promise<SitemapEntry[]> {
       //    自己的抓取预算；ja/ko 全网独有，必须收。
       // 2. 该语言确实入库了 —— 同步了 en/zh 但还没翻 ja/ko 时，若照发 URL，
       //    sitemap 里就是一批 404，比不收录更糟。
-      if (!isIndexable(cfg, locale)) continue;
+      //    manifest 不带 isTranslated：en 永远是上游原文，按未翻译处理；
+      //    zh 若是上游自带的 .zh.md，详情页自己会 noindex。
+      if (!isIndexable(cfg, locale, locale !== "en")) continue;
       if (!d.titles[locale]) continue;
       out.push({
         url: localeUrl(locale, path),

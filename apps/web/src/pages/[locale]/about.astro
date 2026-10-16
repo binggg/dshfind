@@ -1,0 +1,10 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import LegalPage from "~/components/LegalPage.astro";
+import { locales, type Locale } from "~/i18n";
+
+export const getStaticPaths = (() => locales.map((locale) => ({ params: { locale } }))) satisfies GetStaticPaths;
+---
+
+<LegalPage locale={Astro.params.locale as Locale} slug="about" />
