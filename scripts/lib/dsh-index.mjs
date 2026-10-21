@@ -8,9 +8,16 @@
  * ⚠️ 读端遇到**任何一条**违规就整份拒收，所以这里对每个字段先按读端规则自检，
  * 过不了的字段省略、过不了的条目整条跳过——宁可少收一个插件，也不能让全部用户的源挂掉。
  *
- * 收录口径与桌面端市场的安装证据一致：is_plugin=1 + npm_desktop_installable=1 +
- * npm_latest_version 是精确 semver；风险项目不进。只发 npm 源——git 源要求 40 位
- * commit SHA，我们不入库这个。
+ * 收录口径对齐上游参考生成器（apps/plugin-market-generator）：声明了 dsh.bundle 的
+ * npm 包就收，**不做运行时版本门控**——兼容性由 DSH 安装时自己判（engines.dsh，
+ * 没有就看 @deepseek-ai/dsh-* 的 peer 范围）。所以这里不能用 npm_desktop_installable：
+ * 那是老的独立桌面端市场的复核结论，钉死在它的运行时常量上（DSH 0.1.1-rc.2），
+ * 跟进 0.2.x 的头部插件（dsh-context、DSH-better-sidebar……）会全部被它挡掉。
+ *
+ * 具体条件：is_plugin=1、非风险、has_bundle=1、npm 已发布且最新版是精确 semver、
+ * npm_repo_backlink=1（npm 包的 repository 指回本仓库——防止把别人的包挂到这个
+ * 仓库名下）。@deepseek-ai/* 是 DSH 自带的包，从市场重装会和内置那份冲突，不收。
+ * 只发 npm 源——git 源要求 40 位 commit SHA，我们不入库这个。
  *
  * publishTimestamp：库里没有逐版本的 npm 发布时间，取仓库 pushed_at 近似
  * （发版通常伴随推送），缺失时退回 install_probed_at，再退回生成时刻。
@@ -51,10 +58,10 @@ const INDEX_META = {
   format: 1,
   title: { en: "dshfind · DSH Plugin Directory", zh: "dshfind · DSH 插件目录", ja: "dshfind · DSH プラグインディレクトリ", ko: "dshfind · DSH 플러그인 디렉터리" },
   description: {
-    en: "Community plugins indexed and scored daily by dshfind.com — only packages that pass install checks.",
-    zh: "dshfind.com 每日收录与评分的社区插件——只收通过安装复核的包。",
-    ja: "dshfind.com が毎日収集・評価するコミュニティプラグイン。インストール検証を通過したパッケージのみ。",
-    ko: "dshfind.com이 매일 수집·평가하는 커뮤니티 플러그인 — 설치 검증을 통과한 패키지만 수록.",
+    en: "Community plugins indexed and scored daily by dshfind.com — npm packages whose repository links back to their GitHub project.",
+    zh: "dshfind.com 每日收录与评分的社区插件——只收已发布到 npm、且与 GitHub 仓库互相对应的包。",
+    ja: "dshfind.com が毎日収集・評価するコミュニティプラグイン。npm で公開され、GitHub リポジトリと対応が確認できたパッケージのみ。",
+    ko: "dshfind.com이 매일 수집·평가하는 커뮤니티 플러그인 — npm에 게시되고 GitHub 저장소와 연결이 확인된 패키지만 수록.",
   },
   metadata: {
     categories: Object.fromEntries(Object.entries(CATEGORIES).map(([id, title]) => [id, { title }])),
@@ -119,8 +126,10 @@ function unixSeconds(...candidates) {
 
 /** 一行 D1 plugins → 索引条目；不满足收录口径或读端规则时返回 null。 */
 export function buildIndexPlugin(r, fallbackSeconds) {
-  if (!toBool(r.is_plugin) || !toBool(r.npm_desktop_installable) || toBool(r.is_risky)) return null;
+  if (!toBool(r.is_plugin) || toBool(r.is_risky) || !toBool(r.has_bundle)) return null;
+  if (!toBool(r.npm_published) || !toBool(r.npm_repo_backlink)) return null;
   const name = r.pkg_name == null ? "" : String(r.pkg_name);
+  if (name.startsWith("@deepseek-ai/")) return null;
   if (name.length > PACKAGE_NAME_MAX_LENGTH || !PACKAGE_NAME.test(name)) return null;
   const version = r.npm_latest_version == null ? "" : String(r.npm_latest_version);
   if (!SEMVER.test(version)) return null;

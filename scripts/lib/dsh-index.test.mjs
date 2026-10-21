@@ -15,7 +15,10 @@ const row = (over = {}) => ({
   is_featured: 1,
   is_risky: 0,
   is_plugin: 1,
-  npm_desktop_installable: 1,
+  npm_desktop_installable: 0,
+  npm_published: 1,
+  npm_repo_backlink: 1,
+  has_bundle: 1,
   npm_latest_version: "0.69.1",
   pkg_name: "dsh-context",
   npm_repo_directory: null,
@@ -39,7 +42,10 @@ test("builds a format-1 entry with npm source and dshfind homepage", () => {
 test("skips rows the reader would reject or we cannot vouch for", () => {
   const index = buildDshIndex([
     row({ is_risky: 1 }),
-    row({ npm_desktop_installable: 0 }),
+    row({ has_bundle: 0 }),
+    row({ npm_published: 0 }),
+    row({ npm_repo_backlink: 0 }),
+    row({ pkg_name: "@deepseek-ai/dsh-acp-app" }),
     row({ is_plugin: null }),
     row({ npm_latest_version: "latest" }),
     row({ pkg_name: "Bad Name" }),

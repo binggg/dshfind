@@ -156,7 +156,7 @@
         "body": "Filter by category, editor's picks, stars or score, then click Install"
       }
     ],
-    "perkVerified": "Only install-verified packages",
+    "perkVerified": "Only npm packages matched to their repo",
     "perkDaily": "Refreshed daily",
     "perkPicks": "Editor's picks & scores",
     "demo": {
