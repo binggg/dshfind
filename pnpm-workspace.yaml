@@ -1,6 +1,8 @@
 # 根目录是老 Next 站；apps/web 是重写中的 Astro 站（docs/frontend-rewrite-plan.md）
 packages:
   - apps/*
+  # api-edge 的 cf 项目清单（cf 要求 wrangler 装在 Worker 自己的 node_modules）
+  - workers/api-edge
 
 allowBuilds:
   '@parcel/watcher': false
@@ -13,5 +15,9 @@ allowBuilds:
   workerd: false
 
 minimumReleaseAgeExclude:
-  - miniflare@5.20260926.1-alpha
+  # 5.20261019.1-beta、cf、runtime-types：cf CLI（api-edge 迁移到 cf，见
+  # workers/api-edge/cloudflare.config.ts）发布不满观察期，只放行这几个精确版本
+  - miniflare@5.20260926.1-alpha || 5.20261019.1-beta
   - wrangler@4.144.0
+  - cf@1.0.0-beta.20
+  - '@cloudflare/runtime-types@0.1.14'

@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/workers/api-edge/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -40,6 +41,7 @@ yarn-error.log*
 
 # cloudflare (opennext 构建产物与 wrangler 本地状态)
 /.open-next/
+.cloudflare/
 /.wrangler/
 cloudflare-env.d.ts
 

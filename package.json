@@ -76,7 +76,7 @@
     "typescript": "^5",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
-    "wrangler": "^4.123.0"
+    "wrangler": "^4.144.0"
   },
   "packageManager": "pnpm@11.9.0"
 }

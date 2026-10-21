@@ -1,0 +1,10 @@
+{
+  "name": "dshfind-api-edge",
+  "private": true,
+  "type": "module",
+  "description": "api-edge Worker 的 cf 项目清单：cf 据此选 Wrangler 打包器，wrangler 须装在本目录。",
+  "devDependencies": {
+    "cf": "1.0.0-beta.20",
+    "wrangler": "4.144.0"
+  }
+}
