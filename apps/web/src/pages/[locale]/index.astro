@@ -19,6 +19,7 @@ import openmodel from "@/../public/sponsors/openmodel.png";
 import SearchBox from "~/components/header/SearchBox";
 import PickCard from "~/components/home/PickCard.astro";
 import SectionHeading from "~/components/home/SectionHeading.astro";
+import SourceGuide from "~/components/home/SourceGuide.astro";
 import ScoreBadge from "~/components/ScoreBadge.astro";
 import Base from "~/layouts/Base.astro";
 import { locales, translator, type Locale } from "~/i18n";
@@ -169,6 +170,9 @@ const searchLabels = {
       </div>
     </div>
   </section>
+
+  <!-- DSH 插件索引源引导：alpha.4 新功能，放在 hero 之后、rail 之前 -->
+  <SourceGuide locale={locale} />
 
   <!-- 编辑推荐（带换一批）：整池随 HTML 下发，首批可见，其余按批隐藏；换一批纯客户端切换 -->
   <section class="mx-auto w-full max-w-6xl px-4 pt-4 pb-10 sm:px-6 sm:pt-6">
