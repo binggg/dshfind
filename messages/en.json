@@ -135,6 +135,53 @@
     "navSubtitle": "Every public DSH plugin, grouped by category and ranked by stars — synced daily from GitHub.",
     "allOfCategory": "All {n}"
   },
+  "SourceGuide": {
+    "badge": "New in DSH v0.2.1-alpha.4",
+    "title": "Add dshfind as a DSH plugin index source",
+    "subtitle": "DSH now supports custom plugin index sources, but it ships with none. Paste the URL below to browse and install dshfind's plugins right inside DSH.",
+    "urlLabel": "Index URL",
+    "copy": "Copy",
+    "copied": "Copied",
+    "steps": [
+      {
+        "title": "Enable the experimental plugin",
+        "body": "Plugins → Installed → Experimental, turn on “Custom plugin market”"
+      },
+      {
+        "title": "Add the index source",
+        "body": "Open the Discover tab, click “Add index source” and paste the URL above"
+      },
+      {
+        "title": "Browse and install",
+        "body": "Filter by category, editor's picks, stars or score, then click Install"
+      }
+    ],
+    "perkVerified": "Only install-verified packages",
+    "perkDaily": "Refreshed daily",
+    "perkPicks": "Editor's picks & scores",
+    "demo": {
+      "window": "DSH · Plugins",
+      "steps": [
+        "Enable",
+        "Add source",
+        "Install"
+      ],
+      "experimental": "Experimental plugins",
+      "rows": [
+        "Subagents",
+        "Custom plugin market",
+        "Inspector"
+      ],
+      "installed": "Installed",
+      "discover": "Discover",
+      "addSource": "Add index source",
+      "add": "Add",
+      "marketTitle": "dshfind · DSH Plugin Directory",
+      "marketCount": "Updated daily",
+      "install": "Install",
+      "installedDone": "Installed"
+    }
+  },
   "Learn": {
     "courseNav": "Course Navigation",
     "learningCenter": "Learning Center",

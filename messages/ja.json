@@ -134,6 +134,53 @@
     "navSubtitle": "公開 DSH プラグインをカテゴリ別・star 順に一覧。GitHub から毎日自動同期。",
     "allOfCategory": "全 {n} 件"
   },
+  "SourceGuide": {
+    "badge": "DSH v0.2.1-alpha.4 の新機能",
+    "title": "dshfind を DSH のプラグインインデックスソースに追加",
+    "subtitle": "DSH はカスタムプラグインインデックスソースに対応しましたが、既定のソースはありません。下の URL を追加すれば、dshfind 収録のプラグインを DSH 内で閲覧・インストールできます。",
+    "urlLabel": "インデックス URL",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "steps": [
+      {
+        "title": "実験的プラグインを有効化",
+        "body": "プラグイン → インストール済み → 実験的プラグインで「カスタムプラグインマーケット」をオン"
+      },
+      {
+        "title": "インデックスソースを追加",
+        "body": "「Discover」タブで「インデックスソースを追加」を押し、上の URL を貼り付け"
+      },
+      {
+        "title": "閲覧してインストール",
+        "body": "カテゴリ・編集部おすすめ・スター・スコアで絞り込み、「インストール」を押すだけ"
+      }
+    ],
+    "perkVerified": "インストール検証済みのみ",
+    "perkDaily": "毎日自動更新",
+    "perkPicks": "おすすめ・スコア付き",
+    "demo": {
+      "window": "DSH · プラグイン",
+      "steps": [
+        "有効化",
+        "ソース追加",
+        "インストール"
+      ],
+      "experimental": "実験的プラグイン",
+      "rows": [
+        "サブエージェント",
+        "カスタムプラグインマーケット",
+        "インスペクター"
+      ],
+      "installed": "インストール済み",
+      "discover": "Discover",
+      "addSource": "インデックスソースを追加",
+      "add": "追加",
+      "marketTitle": "dshfind · DSH プラグインディレクトリ",
+      "marketCount": "毎日更新",
+      "install": "インストール",
+      "installedDone": "インストール済み"
+    }
+  },
   "Learn": {
     "courseNav": "コースナビゲーション",
     "learningCenter": "ラーニングセンター",

@@ -134,6 +134,53 @@
     "navSubtitle": "按分类浏览全部公开 DSH 插件，按 star 排序，每日自动从 GitHub 同步。",
     "allOfCategory": "全部 {n} 个"
   },
+  "SourceGuide": {
+    "badge": "DSH v0.2.1-alpha.4 新功能",
+    "title": "把 dshfind 加为 DSH 插件索引源",
+    "subtitle": "DSH 现在支持自定义插件索引源，但默认一个源都没有。填入下面这个地址，就能在 DSH 里直接浏览、一键安装 dshfind 收录的插件。",
+    "urlLabel": "索引 URL",
+    "copy": "复制",
+    "copied": "已复制",
+    "steps": [
+      {
+        "title": "开启实验插件",
+        "body": "插件页 → 已安装 → 实验性插件里启用「自定义插件市场」"
+      },
+      {
+        "title": "添加索引源",
+        "body": "切到「发现」标签页，点「添加索引源」，粘贴上面的 URL"
+      },
+      {
+        "title": "浏览并安装",
+        "body": "按分类、编辑推荐、Star 或评分筛选，点「安装」即可"
+      }
+    ],
+    "perkVerified": "只收通过安装复核的包",
+    "perkDaily": "每日自动刷新",
+    "perkPicks": "带编辑推荐与评分",
+    "demo": {
+      "window": "DSH · 插件",
+      "steps": [
+        "开启实验插件",
+        "添加索引源",
+        "一键安装"
+      ],
+      "experimental": "实验性插件",
+      "rows": [
+        "子代理",
+        "自定义插件市场",
+        "检查器"
+      ],
+      "installed": "已安装",
+      "discover": "发现",
+      "addSource": "添加索引源",
+      "add": "添加",
+      "marketTitle": "dshfind · DSH 插件目录",
+      "marketCount": "每日更新",
+      "install": "安装",
+      "installedDone": "已安装"
+    }
+  },
   "Learn": {
     "courseNav": "课程导航",
     "learningCenter": "学习中心",

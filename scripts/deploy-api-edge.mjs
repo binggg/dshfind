@@ -26,6 +26,7 @@ import {
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CONFIG = resolve(root, "workers/api-edge/wrangler.jsonc");
 const META = resolve(root, "workers/api-edge/assets/meta.json");
+const DSH_INDEX = resolve(root, "workers/api-edge/assets/dsh-index.json");
 const API = "https://api.dshfind.com";
 const DESKTOP_UA = "dsh-community-market/0.1";
 /** 部署到边缘全量生效有传播窗口；按 5s 间隔最多等 2 分钟。 */
@@ -104,6 +105,14 @@ async function verify(expectedVersion) {
       }
       if (next.items[0]?.id === market.items[0]?.id) throw new Error("market 游标没有前进");
 
+      // DSH 自定义插件索引源：DSH 不跟随重定向、一条违规就整份拒收，所以必须 200 且
+      // 与本地产物同一份（索引不带 data_version，拿插件数对齐）。
+      const dshIndex = await getJSON("/market/dsh-index.json");
+      if (dshIndex.format !== 1 || !Array.isArray(dshIndex.plugins)) throw new Error("dsh-index 不是 format 1");
+      if (dshIndex.plugins.length !== expectedDshIndexSize) {
+        throw new Error(`dsh-index 插件数 ${dshIndex.plugins.length} ≠ 本地产物 ${expectedDshIndexSize}`);
+      }
+
       // 带过滤的列表：只有 list-facets.json 在位才服务得了。产物缺了 Worker 会
       // 静默透传回 Go，fetchEdge 的「不是 Go 在服务」断言正是为了逮这种回退。
       const filtered = await getJSON("/v1/plugins?q=dsh&per_page=5");
@@ -174,6 +183,7 @@ async function verify(expectedVersion) {
 const meta = JSON.parse(readFileSync(META, "utf8"));
 const expectedVersion = meta.data_version;
 const expectedCatalogEtag = meta.catalog_etag;
+const expectedDshIndexSize = JSON.parse(readFileSync(DSH_INDEX, "utf8")).plugins.length;
 if (typeof expectedVersion !== "string" || !expectedVersion.startsWith("sha256:")) {
   console.error("meta.json 里没有合法的 data_version——先跑 scripts/gen-api-artifacts.mjs");
   process.exit(1);

@@ -152,6 +152,12 @@ const getMarket = cached(async (env) => {
   return { meta, items };
 });
 
+/** DSH 索引源整包：原样转发产物字节，ETag 按内容算一次后随 isolate 缓存。 */
+const getDshIndex = cached(async (env) => {
+  const body = new Uint8Array(await (await fetchAsset(env, "dsh-index.json")).arrayBuffer());
+  return { body, etag: await strongETag(body) };
+});
+
 /** 只在请求带 q / category 时才加载解析（占 market 流量约三成）。 */
 const getMarketFilters = cached(async (env) => (await fetchAsset(env, "market-filters.json")).json());
 
@@ -937,6 +943,11 @@ export async function handleRequest(request, env) {
           SCHEMA_CACHE_CONTROL,
           corsHeaders(),
         );
+      }
+      // DSH「自定义插件索引源」：DSH 拒绝重定向，所以必须在这个确切 URL 上直接 200。
+      if (url.pathname === "/market/dsh-index.json") {
+        const { body, etag } = await getDshIndex(env);
+        return await cacheableResponse(request, body, "application/json; charset=utf-8", CACHE_CONTROL, corsHeaders(), etag);
       }
       if (url.pathname === "/market/v1/plugins") {
         return await handleMarketPlugins(request, env, url);

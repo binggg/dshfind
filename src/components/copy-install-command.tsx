@@ -10,8 +10,17 @@ import { Check, Copy } from "lucide-react";
  * 复制失败（非 HTTPS / 无权限）时静默：命令框本身可选中，用户手动复制即可。
  * 样式与炫耀卡的「复制 Markdown」按钮保持一致。
  */
-export function CopyInstallCommand({ command }: { command: string }) {
+export function CopyInstallCommand({
+  command,
+  labels,
+}: {
+  command: string;
+  /** 复制的不是命令时（如首页的索引源 URL）覆盖按钮文案。 */
+  labels?: { copy: string; copied: string };
+}) {
   const t = useTranslations("Plugins");
+  const copyLabel = labels?.copy ?? t("installCopy");
+  const copiedLabel = labels?.copied ?? t("installCopied");
   const [copied, setCopied] = React.useState(false);
   const timer = React.useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -32,18 +41,18 @@ export function CopyInstallCommand({ command }: { command: string }) {
     <button
       type="button"
       onClick={copy}
-      aria-label={copied ? t("installCopied") : t("installCopy")}
+      aria-label={copied ? copiedLabel : copyLabel}
       className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border/60 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-muted"
     >
       {copied ? (
         <>
           <Check className="size-3.5 text-emerald-500" />
-          {t("installCopied")}
+          {copiedLabel}
         </>
       ) : (
         <>
           <Copy className="size-3.5" />
-          {t("installCopy")}
+          {copyLabel}
         </>
       )}
     </button>

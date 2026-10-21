@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Hero } from "@/components/sections/hero";
 import { NavSection } from "@/components/sections/nav-section";
+import { PluginSourceGuide } from "@/components/sections/plugin-source-guide";
 import { isLocale, type Locale } from "@/i18n/config";
 import { jsonLdSafe } from "@/lib/json-ld";
 import { localeUrl, pageAlternates, SITE_URL } from "@/lib/site";
@@ -55,6 +56,7 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(jsonLd) }}
       />
       <Hero />
+      <PluginSourceGuide />
       <NavSection />
     </>
   );

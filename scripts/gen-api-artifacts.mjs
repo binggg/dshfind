@@ -17,6 +17,7 @@
  *   list-facets.json       /v1/plugins 的过滤与排序面（14 个条件 + 4 种排序）
  *   detail-index.json      小写 full_name → 行号，供详情端点查找
  *   meta.json              data_version / as_of / 行数 / catalog 的 ETag
+ *   dsh-index.json         DSH「自定义插件索引源」format 1（/market/dsh-index.json）
  *
  * 用法：node --env-file=.env.local scripts/gen-api-artifacts.mjs
  */
@@ -28,6 +29,7 @@ import { fileURLToPath } from "node:url";
 import { openDb } from "./lib/db.mjs";
 import { openWranglerDb } from "./lib/wrangler-db.mjs";
 import { catalogSubdirectory } from "./lib/install.mjs";
+import { assertDshIndex, buildDshIndex } from "./lib/dsh-index.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = resolve(root, "workers/api-edge/assets");
@@ -458,6 +460,11 @@ const marketFilters = {
   descs: marketRows.map((r) => (r.description ?? "").toLowerCase()),
 };
 
+// DSH 自定义插件索引源：快照序（featured 优先、star 降序）即索引的默认顺序。
+// 读端遇到一条违规就整份拒收，自检不过直接让生成失败，别把坏索引部署出去。
+const dshIndex = buildDshIndex(rows);
+assertDshIndex(dshIndex);
+
 mkdirSync(outDir, { recursive: true });
 writeFileSync(resolve(outDir, "catalog-full.ndjson"), items.join("\n") + "\n");
 writeFileSync(resolve(outDir, "catalog-desktop.ndjson"), desktopItems.join("\n") + "\n");
@@ -468,6 +475,7 @@ writeFileSync(resolve(outDir, "suggest-hay.json"), JSON.stringify(suggestHay) + 
 writeFileSync(resolve(outDir, "list-facets.json"), JSON.stringify(listFacets) + "\n");
 writeFileSync(resolve(outDir, "detail-index.json"), JSON.stringify(detailIndex) + "\n");
 writeFileSync(resolve(outDir, "graphql-facets.json"), JSON.stringify(graphqlFacets) + "\n");
+writeFileSync(resolve(outDir, "dsh-index.json"), JSON.stringify(dshIndex) + "\n");
 writeFileSync(
   resolve(outDir, "meta.json"),
   JSON.stringify({
@@ -484,5 +492,6 @@ console.log(`完整目录 ${items.length} 条，桌面首屏 ${desktopItems.leng
 console.log(
   `market 契约 ${marketItems.length} 条（其中 ${marketItems.filter((l) => l === "null").length} 条不过 schema 被跳过）`,
 );
+console.log(`DSH 索引源 ${dshIndex.plugins.length} 个插件`);
 console.log(`data_version: ${version}`);
 console.log(`as_of: ${asOf}`);
